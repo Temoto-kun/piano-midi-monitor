@@ -1,5 +1,5 @@
 {
-  "name": "piano-keyboard-electron",
+  "name": "piano-midi-monitor",
   "version": "0.0.0",
   "description": "Simple piano keyboard reading MIDI messages",
   "main": "index.js",
@@ -15,5 +15,6 @@
   },
   "dependencies": {
     "midi": "^1.0.0"
-  }
+  },
+  "repository": "https://github.com/Temoto-kun/piano-midi-monitor.git"
 }
