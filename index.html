@@ -7,59 +7,12 @@
       http-equiv="Content-Security-Policy"
       content="script-src 'self' 'unsafe-inline';"
     />
-    <style>
-      html {
-        height: 100%;
-        width: 100%;
-      }
-
-      body {
-        margin: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-      }
-
-      svg {
-        fill: currentColor;
-      }
-
-      .natural {
-        background-color: #eee;
-        border: 1px solid;
-        height: 100%;
-        box-sizing: border-box;
-        background-image: url('./piano/natural.png');
-      }
-
-      .accidental {
-        background-color: #222;
-        border: 1px solid;
-        height: 65%;
-        box-sizing: border-box;
-        background-image: url('./piano/accidental.png');
-      }
-
-      #pedals {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 0;
-        flex: auto;
-        padding: 0 1rem;
-        box-sizing: border-box;
-        background-color: black;
-        color: white;
-        height: 100%;
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body>
     <div
       id="keyboard"
-      style="width: 944px; height: 100%; position: relative;"
+      style="width: 1008px; height: 100%; position: relative;"
     ></div>
     <div id="pedals">
       <svg
@@ -126,105 +79,6 @@
       </svg>
     </div>
 
-    <script>
-      const X_OFFSET = 0
-      const NATURAL_KEY_WIDTH = 15;
-      const ACCIDENTAL_KEY_WIDTH = 9;
-      const accidental_key_x_offsets = [
-        10.0 / 112.0,
-        28.0 / 112.0,
-        57.0 / 112.0,
-        75.0 / 112.0,
-        93.0 / 112.0,
-      ]
-
-      const { ipcRenderer, } = require('electron')
-
-      const renderKeys = () => {
-        let midi_note = 12
-        let element
-        const keyboard = window.document.getElementById('keyboard')
-        for (let octave = 0; octave < 9; octave += 1) {
-          for (let natural_key = 0; natural_key < 7; natural_key += 1) {
-            element = window.document.createElement('div')
-            element.setAttribute('id', 'n' + midi_note)
-            element.classList.add('natural')
-            element.style.position = 'absolute'
-            element.style.top = 0
-            element.style.left = X_OFFSET + (octave * NATURAL_KEY_WIDTH * 7) + (natural_key * NATURAL_KEY_WIDTH - 1) +
-              'px'
-            element.style.width = NATURAL_KEY_WIDTH + 1 + 'px'
-            keyboard.appendChild(element)
-
-            switch (natural_key) {
-              case 0:
-              case 1:
-              case 3:
-              case 4:
-              case 5:
-                midi_note += 2;
-                break;
-              case 2:
-              case 6:
-                midi_note += 1;
-                break;
-              default:
-                break;
-            }
-          }
-
-          midi_note -= 11;
-
-          for (let accidental_key = 0; accidental_key < 5; accidental_key += 1) {
-            element = window.document.createElement('div')
-            element.classList.add('accidental')
-            element.setAttribute('id', 'n' + midi_note)
-            element.style.position = 'absolute'
-            element.style.top = 0
-            element.style.left = X_OFFSET + (octave * NATURAL_KEY_WIDTH * 7) + (NATURAL_KEY_WIDTH * 7 *
-              accidental_key_x_offsets[accidental_key]) + 'px'
-            element.style.width = ACCIDENTAL_KEY_WIDTH + 'px'
-            keyboard.appendChild(element)
-
-            switch (accidental_key) {
-              case 0:
-              case 2:
-              case 3:
-                midi_note += 2;
-                break;
-              case 1:
-              case 4:
-                midi_note += 3;
-                break;
-              default:
-                break;
-            }
-          }
-
-          midi_note -= 1;
-        }
-      }
-
-      ipcRenderer.on('note', (event, message) => {
-        const [key, value, ] = message.split(':')
-        window.document.getElementById('n' + key).style.backgroundColor = value > 0 ? 'red' : null
-      })
-
-      renderKeys(null, null)
-
-      ipcRenderer.on('pedal', (event, message) => {
-        console.log(message)
-        const [which, value, ] = message.split(':')
-        const pedalIds = {
-          64: 'sustain',
-          66: 'sostenuto',
-          67: 'unacorda',
-        }
-
-        console.log(window.document.getElementById(pedalIds[which]))
-
-        window.document.getElementById(pedalIds[which]).style.opacity = value / 127 * 0.75 + 0.25
-      })
-    </script>
+    <script src="./script.js"></script>
   </body>
 </html>

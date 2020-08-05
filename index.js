@@ -1,19 +1,26 @@
 const { app, BrowserWindow } = require('electron')
 const midi = require('midi')
 
-const SCREEN_HEIGHT = 96
-const SCREEN_WIDTH = 1152
+const SCREEN_HEIGHT = 64
+const SCREEN_WIDTH = 1200
 
 const createWindow = () => {
   const win = new BrowserWindow({
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
+    useContentSize: true,
+    backgroundColor: '#000000',
+    resizable: false,
+    minimizable: false,
+    maximizable: false,
+    fullscreenable: false,
     webPreferences: {
-      nodeIntegration: true
+      //devTools: false,
+      nodeIntegration: true,
     }
   })
 
-  win.loadFile('pages/piano.html')
+  win.loadFile('index.html')
 
   const input = new midi.Input()
 
