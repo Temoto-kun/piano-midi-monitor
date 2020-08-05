@@ -1,0 +1,19 @@
+{
+  "name": "piano-keyboard-electron",
+  "version": "0.0.0",
+  "description": "Simple piano keyboard reading MIDI messages",
+  "main": "index.js",
+  "author": "TheoryOfNekomata <allan.crisostomo@outlook.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^9.1.2",
+    "electron-rebuild": "^1.11.0"
+  },
+  "dependencies": {
+    "midi": "^1.0.0"
+  }
+}
