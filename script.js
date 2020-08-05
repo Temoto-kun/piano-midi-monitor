@@ -97,15 +97,12 @@
   })
 
   ipcRenderer.on('pedal', (event, message) => {
-    console.log(message)
     const [which, value, ] = message.split(':')
     const pedalIds = {
       64: 'sustain',
       66: 'sostenuto',
       67: 'unacorda',
     }
-
-    console.log(window.document.getElementById(pedalIds[which]))
 
     window.document.getElementById(pedalIds[which]).style.opacity = value / 127 * 0.75 + 0.25
   })
