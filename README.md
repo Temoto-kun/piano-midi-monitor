@@ -16,6 +16,8 @@ Just run:
 yarn build
 ```
 
+A directory `dist/` should be generated along with build output.
+
 ### Development
 
 Just run:
@@ -24,6 +26,8 @@ Just run:
 yarn start
 ```
 
-LICENSE
+Electron should spawn the application window.
+
+## License
 
 [MIT License](./LICENSE)
