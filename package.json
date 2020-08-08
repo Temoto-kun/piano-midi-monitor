@@ -53,8 +53,8 @@
   },
   "build": {
     "files": [
-      "build/**/*",
-      "node_modules/**/*"
+      "./build/**/*",
+      "./node_modules/**/*"
     ],
     "appId": "sh.modal.apps.pianomidimonitor",
     "productName": "Piano MIDI Monitor",
