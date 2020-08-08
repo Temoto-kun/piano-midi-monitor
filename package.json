@@ -1,7 +1,10 @@
 {
-  "name": "piano-midi-monitor",
+  "name": "@theoryofnekomata/piano-midi-monitor",
+  "description": "Simple monitor for displaying MIDI status for digital pianos.",
+  "author": "TheoryOfNekomata <allan.crisostomo@outlook.com> (https://modal.sh)",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -11,6 +14,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "electron-is-dev": "^1.2.0",
     "midi": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -18,12 +22,13 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start:view": "react-scripts start",
-    "start:shell": "electron build/",
-    "build:view": "react-scripts build",
-    "test:view": "react-scripts test",
-    "build:shell": "tsc src/shell/index.ts --outDir build/",
-    "rebuild": "electron-rebuild -f -w midi"
+    "postinstall": "electron-builder install-app-deps",
+    "start": "concurrently \"BROWSER=none react-scripts start\" \"wait-on http://localhost:3000 && electron .\"",
+    "test": "react-scripts test",
+    "compile": "tsc src/shell/electron.ts --outDir public/",
+    "rebuild": "electron-rebuild -f -w midi",
+    "prebuild": "react-scripts build",
+    "build": "electron-builder"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -41,9 +46,19 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^5.3.0",
     "electron": "^9.2.0",
     "electron-builder": "^22.8.0",
-    "electron-rebuild": "^1.11.0"
+    "wait-on": "^5.1.0"
+  },
+  "build": {
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "appId": "sh.modal.apps.pianomidimonitor",
+    "productName": "Piano MIDI Monitor",
+    "copyright": "Copyright © 2020 TheoryOfNekomata"
   },
   "homepage": "./"
 }

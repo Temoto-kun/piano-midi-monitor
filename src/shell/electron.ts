@@ -1,6 +1,10 @@
 import { app, BrowserWindow, Menu, } from 'electron'
 // @ts-ignore
+import electronIsDev = require('electron-is-dev')
+// @ts-ignore
 import midi = require('midi')
+// @ts-ignore
+import path = require('path')
 
 const SCREEN_HEIGHT = 100
 const SCREEN_WIDTH = 52 * 20 + 200
@@ -16,12 +20,20 @@ const createWindow = () => {
     maximizable: false,
     fullscreenable: false,
     webPreferences: {
-      devTools: false,
+      devTools: electronIsDev,
       nodeIntegration: true,
     }
   })
 
-  win.loadURL('http://localhost:3000')
+  win.loadURL(
+    electronIsDev
+      ? 'http://localhost:3000'
+      : `file://${path.join(__dirname, '../build/index.html')}`
+  )
+
+  //if (electronIsDev) {
+    win.webContents.openDevTools()
+  //}
 
   const input = new midi.Input()
 
@@ -94,7 +106,7 @@ const SPANS = [
 ]
 
 const platformMenu = Menu.buildFromTemplate([
-  ...<object[]> (
+  ...(
     process.platform === 'darwin'
       ? [
         {
@@ -113,7 +125,7 @@ const platformMenu = Menu.buildFromTemplate([
         }
       ]
       : []
-  ),
+  ) as object[],
   {
     label: 'Span',
     submenu: SPANS.map(s => ({
