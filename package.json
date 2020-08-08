@@ -1,22 +1,49 @@
 {
   "name": "piano-midi-monitor",
-  "version": "0.0.0",
-  "description": "Simple piano keyboard reading MIDI messages",
-  "main": "index.js",
-  "author": "TheoryOfNekomata <allan.crisostomo@outlook.com>",
-  "license": "MIT",
+  "version": "0.1.0",
   "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@theoryofnekomata/react-musical-keyboard": "1.0.4",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "midi": "^1.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "typescript": "~3.7.2"
+  },
   "scripts": {
-    "start": "electron .",
-    "pack": "electron-builder --dir",
-    "build": "electron-builder"
+    "start:view": "react-scripts start",
+    "start:shell": "electron build/",
+    "build:view": "react-scripts build",
+    "test:view": "react-scripts test",
+    "build:shell": "tsc src/shell/index.ts --outDir build/",
+    "rebuild": "electron-rebuild -f -w midi"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "electron": "^9.1.2",
-    "electron-builder": "^22.8.0"
+    "electron": "^9.2.0",
+    "electron-builder": "^22.8.0",
+    "electron-rebuild": "^1.11.0"
   },
-  "dependencies": {
-    "midi": "^1.0.0"
-  },
-  "repository": "https://github.com/Temoto-kun/piano-midi-monitor.git"
+  "homepage": "./"
 }
