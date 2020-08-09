@@ -38,13 +38,12 @@ const PedalBoard = () => {
 
   return (
     <div
+      className="theme"
       style={{
-        color: 'white',
-        backgroundColor: 'black',
         display: 'grid',
         gridTemplateColumns: 'repeat(3, auto)',
         alignItems: 'center',
-        padding: '1rem',
+        padding: 'var(--size-close-button, 2rem) 1rem 1rem',
         gap: '1rem',
       }}
     >

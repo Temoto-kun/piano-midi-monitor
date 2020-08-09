@@ -92,3 +92,5 @@ dist
 .pnp.*
 build
 public/electron.js
+public/services
+config.json

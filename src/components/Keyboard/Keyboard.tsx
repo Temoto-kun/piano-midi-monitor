@@ -4,10 +4,10 @@ import KeyboardBase, { StyledAccidentalKey, StyledNaturalKey, } from '@theoryofn
 const NaturalKey = React.memo(StyledNaturalKey)
 const AccidentalKey = React.memo(StyledAccidentalKey)
 
-const Keyboard = () => {
-  const [startKey, setStartKey, ] = React.useState(21)
-  const [endKey, setEndKey, ] = React.useState(108)
-  const [width, setWidth, ] = React.useState(52)
+const Keyboard = ({
+  startKey = 21,
+  endKey = 108,
+}) => {
   const [keyChannels, setKeyChannels, ] = React.useState<any[]>([])
 
   React.useEffect(() => {
@@ -39,27 +39,8 @@ const Keyboard = () => {
     }
   }, [])
 
-  React.useEffect(() => {
-    const onMessage = (e: MessageEvent) => {
-      if (e.data.event !== 'spanchange') {
-        return
-      }
-
-      const [startKey, endKey, naturalKeys, ] = e.data.message.split(':')
-      setStartKey(Number(startKey))
-      setEndKey(Number(endKey))
-      setWidth(Number(naturalKeys))
-    }
-
-    window.addEventListener('message', onMessage)
-    return () => {
-      window.removeEventListener('message', onMessage)
-    }
-  }, [])
-
   return (
     <KeyboardBase
-      width={width * 20}
       height="100%"
       startKey={startKey}
       endKey={endKey}

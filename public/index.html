@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-PH" style="--size-close-button: 2rem;">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -28,8 +28,46 @@
     <title>Piano MIDI Monitor</title>
   </head>
   <body>
+    <button
+      id="close"
+      class="theme button"
+      style="
+        display: block;
+        position: fixed;
+        line-height: 0;
+        top: 0;
+        right: 0;
+        padding: 0;
+        border: 0;
+        height: var(--size-close-button, 2rem);
+        width: var(--size-close-button, 2rem);
+        text-align: center;
+        outline: 0;
+      "
+    >
+      <span
+        style="
+          display: block;
+          background-color: currentColor;
+          width: 50%;
+          height: 0.125rem;
+          margin: 0 auto;
+          transform: rotate(45deg);
+        "
+      ></span>
+      <span
+        style="
+          display: block;
+          background-color: currentColor;
+          width: 50%;
+          height: 0.125rem;
+          margin: 0 auto;
+          margin-top: -0.125rem;
+          transform: rotate(-45deg);
+        "
+      ></span>
+    </button>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -56,6 +94,10 @@
               message
             })
           })
+        })
+
+        window.document.getElementById('close').addEventListener('click', () => {
+          ipcRenderer.send('quit')
         })
       })(window, require('electron'))
     </script>
