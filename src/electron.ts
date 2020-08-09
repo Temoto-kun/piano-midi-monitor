@@ -1,6 +1,7 @@
 import { app, BrowserWindow, Menu, ipcMain, } from 'electron'
 import path from 'path'
 import fs from 'fs'
+import * as yargs from 'yargs'
 
 import SPANS from './services/spans.json'
 import SCALE_FACTORS from './services/scaleFactors.json'
@@ -79,7 +80,7 @@ app
   .whenReady()
   .then(() => {
     try {
-      const configJsonRaw = fs.readFileSync('./config.json').toString('utf-8')
+      const configJsonRaw = fs.readFileSync(path.join(app.getPath('userData'), 'config.json')).toString('utf-8')
       config = JSON.parse(configJsonRaw)
     } catch (e) {
       config = {
@@ -180,7 +181,10 @@ app
   })
 
 app.on('quit', () => {
-  fs.writeFileSync('./config.json', JSON.stringify(config))
+  if (app.commandLine.hasSwitch('discardConfig')) {
+    return
+  }
+  fs.writeFileSync(path.join(app.getPath('userData'), 'config.json'), JSON.stringify(config))
 })
 
 app.on('window-all-closed', () => {

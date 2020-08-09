@@ -1540,10 +1540,10 @@
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-7.2.1.tgz#2ad4e844175a3738cb9e7064be5ea070b8863a1c"
   integrity sha512-oZ0Ib5I4Z2pUEcoo95cT1cr6slco9WY7yiPpG+RGNkj8YcYgJnM7pXmYmorNOReh8MIGcKSqXyeGjxnr8YiZbA==
 
-"@theoryofnekomata/react-musical-keyboard@1.0.4":
-  version "1.0.4"
-  resolved "https://js.pack.modal.sh/@theoryofnekomata%2freact-musical-keyboard/-/react-musical-keyboard-1.0.4.tgz#db4abf5d310563130355d96710ecc8a0a5f97e0d"
-  integrity sha512-9Iq0g1iY4DS9ANeqDI4uBBxWSamMiIlUWuT5MNwWYXX2dZesUkkwwPFER4PRiYnzj2+5beuHi8V7L97kp9dxaA==
+"@theoryofnekomata/react-musical-keyboard@1.0.7":
+  version "1.0.7"
+  resolved "https://js.pack.modal.sh/@theoryofnekomata%2freact-musical-keyboard/-/react-musical-keyboard-1.0.7.tgz#beeb038e086491da79d944828ac9b7b8cfb3030b"
+  integrity sha512-H9nARUaOJpoCgRS4MK+bNiM778MyAd+ZczWW5Qaiasam9l0nFn8HVjCW6u+ftYtX3wNQqFPV9VakOwVsjTUlXA==
   dependencies:
     mem "^6.1.0"
 
@@ -11950,7 +11950,7 @@ yargs@^13.3.0:
     y18n "^4.0.0"
     yargs-parser "^13.1.2"
 
-yargs@^15.3.1:
+yargs@^15.3.1, yargs@^15.4.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-15.4.1.tgz#0d87a16de01aee9d8bec2bfbf74f67851730f4f8"
   integrity sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==
